@@ -6,8 +6,7 @@ import argparse
 
 @dataclass
 class Business:
-    """holds business data
-    """
+    # holds business data
     name: str = None
     address: str = None
     website: str = None
@@ -15,22 +14,22 @@ class Business:
 
 @dataclass
 class BusinessList:
-    """holds list of Business objects,
-       and save to both excel and csv
-    """
+    #holds list of Business objects, and save to both excel and csv
+
     business_list : list[Business] = field(default_factory=list)
 
     def dataframe(self):
-        """transform business_list to pandas dataframe
-        Returns: pandas dataframe
-        """
+        #transform business_list to pandas dataframe. 
+        
+        #Returns: pandas dataframe
+
         return pd.json_normalize((asdict(business) for business in self.business_list), sep="_")
 
     def save_to_excel(self, filename):
-        """saves pandas dataframe to excel (xlsx) file
-        Args:
-            filename (str): filename
-        """
+        # saves pandas dataframe to excel (xlsx) file
+        
+        #Args: filename (str): filename
+                
         self.dataframe().to_excel(f'{filename}.xlsx', index=False)
 
 def main():
